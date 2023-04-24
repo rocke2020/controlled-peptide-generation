@@ -1,7 +1,7 @@
 import sys, os, types
 import json
 from collections import OrderedDict
-from utils import check_dir_exists
+from basic_utils import check_dir_exists
 
 
 # small helper stuff

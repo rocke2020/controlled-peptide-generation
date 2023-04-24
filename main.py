@@ -10,7 +10,7 @@ from models.model import RNN_VAE
 from train_vae import train_vae
 import tb_json_logger
 
-import utils
+import basic_utils
 import cfg
 
 logger = logging.getLogger()
@@ -54,7 +54,7 @@ dataset = AttributeDataLoader(mbsize=cfg.vae.batch_size, max_seq_len=cfg.max_seq
                               attributes=cfg.attributes,
                               **cfg.data_kwargs)
 dataset.print_stats()
-utils.save_vocab(dataset.TEXT.vocab, cfg.vocab_path)
+basic_utils.save_vocab(dataset.TEXT.vocab, cfg.vocab_path)
 
 # MODEL
 if cfg.model.pretrained_emb:
@@ -78,7 +78,7 @@ if cfg.phase in [1]:
 
     with torch.no_grad():
         samples, _, _ = model.generate_sentences(cfg.evals.sample_size, sample_mode='categorical')
-    utils.write_gen_samples(dataset.idx2sentences(samples, False), cfg.vae.gen_samples_path)
+    basic_utils.write_gen_samples(dataset.idx2sentences(samples, False), cfg.vae.gen_samples_path)
 
 log.info(f"saving result.json and vae_result.json at {cfg.savepath}")
 tb_json_logger.export_to_json(pjoin(cfg.savepath, 'result.json'))

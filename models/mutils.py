@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from utils import check_dir_exists
+from basic_utils import check_dir_exists
 
 UNK_IDX = 0
 PAD_IDX = 1

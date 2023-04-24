@@ -30,7 +30,7 @@ features derived from atomistic simulations.
 ### Data: 
 + `data_processing/data` dir has the short versions of data files required by our data curation code `data_processing/create_datasets.py`
 + For the full version of dataset use following links to download full version of data files that are publicly available. 
-+ UNIPROT: [https://www.uniprot.org/uniprot/?query=reviewed:yes] and [https://www.uniprot.org/uniprot/?query=reviewed:no]
++ UNIPROT: [https://www.uniprot.org/uniprot/?query=reviewed:true] and [https://www.uniprot.org/uniprot/?query=reviewed:false]
 + SATPDB: [http://crdd.osdd.net/raghava/satpdb/]
 + DBAASP: [https://dbaasp.org]
 + AMPEP: [https://cbbio.cis.um.edu.mo/software/AmPEP/]

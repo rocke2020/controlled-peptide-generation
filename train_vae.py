@@ -5,7 +5,7 @@ import torch
 import torch.optim as optim
 
 from models.mutils import save_model
-import utils
+import basic_utils
 import losses
 from tb_json_logger import log_value
 
@@ -22,7 +22,7 @@ def train_vae(cfgv, model, dataset):
             tblog = lambda k, v: None
 
         inputs = dataset.next_batch('train_vae')
-        beta = utils.anneal(cfgv.beta, it)
+        beta = basic_utils.anneal(cfgv.beta, it)
         (z_mu, z_logvar), (z, c), dec_logits = model(inputs.text, q_c='prior', sample_z=1)
         recon_loss = losses.recon_dec(inputs.text, dec_logits)
         kl_loss = losses.kl_gaussianprior(z_mu, z_logvar)
