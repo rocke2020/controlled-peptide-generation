@@ -7,17 +7,19 @@ import torch.optim as optim
 from models.mutils import save_model
 import basic_utils
 import losses
-from tb_json_logger import log_value
+from torch.utils.tensorboard import SummaryWriter
+from utils.log_util import logger
 
 
 def train_vae(cfgv, model, dataset):
-    print('Training base vae ...')
+    tb_writer = SummaryWriter()
+    logger.info('Training base vae ...')
     trainer = optim.Adam(model.vae_params(), lr=cfgv.lr)
 
     for it in tqdm(range(cfgv.s_iter, cfgv.s_iter + cfgv.n_iter + 1), disable=None):
         if it % cfgv.cheaplog_every == 0 or it % cfgv.expsvlog_every == 0:
             def tblog(k, v):
-                log_value('train_' + k, v, it)
+                tb_writer.add_scalar('train_' + k, v, it)
         else:
             tblog = lambda k, v: None
 

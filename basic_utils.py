@@ -77,3 +77,8 @@ def scale_and_clamp(dist, w, clamp_val=None):
         return clamp_val
     else:
         return rescaled
+
+
+if __name__ == "__main__":
+    a = prod([2,])
+    print(a)
