@@ -6,6 +6,7 @@ from basic_utils import check_dir_exists
 
 # small helper stuff
 class Bunch(dict):
+    """ Use this class to let dir() to return the dict items.  """
     def __init__(self, *args, **kwds):
         super(Bunch, self).__init__(*args, **kwds)
         self.__dict__ = self
@@ -59,6 +60,7 @@ def _cfg_import_export(cfg_interactor, cfg_, prefix='', mode='fill_parser'):
     for k in dir(cfg_):
         if k[0] == '_': continue  # hidden
         v = getattr(cfg_, k)
+        # type(v) filter other items, such as the hidden k and v inside a dict class.
         if type(v) in [float, str, int, bool]:
             if mode == 'fill_parser':
                 cfg_interactor.add_argument('--{}{}'.format(prefix, k), type=type(v), help='default: {}'.format(v))
@@ -96,8 +98,7 @@ def _update_cfg():
         cfgv.n_iter = cfgv.n_iter // partN
         cfgv.s_iter += part * cfgv.n_iter
         cfgv.expsvlog_every = min(cfgv.expsvlog_every, cfgv.n_iter)
-        assert (
-                       cfgv.s_iter + cfgv.n_iter) % cfgv.expsvlog_every == 0, 'Final model wont be saved; n_iter={}, expsvlog_every {}'.format(
+        assert (cfgv.s_iter + cfgv.n_iter) % cfgv.expsvlog_every == 0, 'Final model wont be saved; n_iter={}, expsvlog_every {}'.format(
             cfgv.n_iter, cfgv.expsvlog_every)
     # inject shared fields into vae and full
     vae.update(shared)
@@ -321,7 +322,7 @@ def _set_dataset(dataset):
 
 
 # set path to your data
-DATA_ROOT = './PATH_TO_DATA/'
+DATA_ROOT = '/home/qcdong/bio_drug_corpus/controlled-peptide-generation/'
 
 amp_sample_prob_factors = {
     'amp=amp_posc': 20, 'amp=amp_posnc': 10,
