@@ -14,17 +14,6 @@ import cfg
 from utils.log_util import logger
 
 logger = logging.getLogger()
-# logger.setLevel(logging.DEBUG)
-# logger.propagate = False  # do not propagate logs to previously defined root logger (if any).
-# formatter = logging.Formatter('%(asctime)s - %(levelname)s(%(name)s): %(message)s')
-# # console
-# consH = logging.StreamHandler()
-# consH.setFormatter(formatter)
-# consH.setLevel(logging.INFO)
-# logger.addHandler(consH)
-# # file handler
-# request_file_handler = True
-# log = logger
 
 # setting up cfg
 parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS,
