@@ -16,7 +16,6 @@ def _override_config(args, cfg):
         (1) contents of config_json (taken from (a) loadpath if not auto, or (2) savepath)
         (2) from command line args
     """
-    config_json = vars(args).get('config_json', '')
     _cfg_import_export(args, cfg, mode='override')
 
 
